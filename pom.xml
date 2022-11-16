@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.accenture</groupId>
-    <artifactId>publishes-billing-data</artifactId>
+    <artifactId>poc-vivo-publish-event-billing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>publishes-billing-data</name>
-    <description>publishes-billing-data</description>
+    <name>poc-vivo-publish-event-billing</name>
+    <description>poc-vivo-publish-event-billing</description>
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../publishes-billing-data.iml" filepath="$PROJECT_DIR$/../publishes-billing-data.iml" />
+      <module fileurl="file://$PROJECT_DIR$/poc-vivo-publish-event-billing.iml" filepath="$PROJECT_DIR$/poc-vivo-publish-event-billing.iml" />
     </modules>
   </component>
 </project>

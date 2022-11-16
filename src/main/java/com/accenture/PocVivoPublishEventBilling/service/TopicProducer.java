@@ -1,5 +1,6 @@
-package com.accenture.publishesbillingdata.service;
+package com.accenture.PocVivoPublishEventBilling.service;
 
+import com.accenture.PocVivoPublishEventBilling.model.FinancialAccountCreateEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,8 +16,9 @@ public class TopicProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public void send(String message){
-        log.info("Payload enviado: {}",  message);
-        kafkaTemplate.send(topicName, message);
+    public void send(FinancialAccountCreateEvent message){
+
+        log.info("Payload enviado: {}",  message.toString());
+        kafkaTemplate.send(topicName, message.toString());
     }
 }

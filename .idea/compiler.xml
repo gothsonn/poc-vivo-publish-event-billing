@@ -7,16 +7,17 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="publishes-billing-data" />
+        <module name="poc-vivo-publish-event-billing" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="publishes-billing-data" target="11" />
+      <module name="poc-vivo-publish-event-billing" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
+    <option name="GENERATE_NO_WARNINGS" value="true" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="publishes-billing-data" options="-parameters" />
+      <module name="poc-vivo-publish-event-billing" options="-parameters" />
     </option>
   </component>
 </project>
