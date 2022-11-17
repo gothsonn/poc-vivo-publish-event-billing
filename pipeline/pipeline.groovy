@@ -28,7 +28,7 @@ node('docker-node') {
     println fullname
     withCredentials([file(credentialsId: 'kubeconfig', variable: 'SECRET_FILE')]) {
       sh 'KUBECONFIG=$SECRET_FILE kubectl apply -f ./kubernetes/deployment.yaml'
-      sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment/'+${env.JOB_NAME}+' '+${env.JOB_NAME}+'='+pubregistry+fullname
+      sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment/'+name_img+' '+name_img+'='+pubregistry+fullname
     }
   }
 
