@@ -23,9 +23,11 @@ node('docker-node') {
     sh("docker rmi -f $imgrm")
   }
   stage('Deploy Image'){
+    def fullname = "${name_img}:${version}"
+    println fullname
     withCredentials([file(credentialsId: 'kubeconfig', variable: 'SECRET_FILE')]) {
       sh 'KUBECONFIG=$SECRET_FILE kubectl apply -f ./kubernetes/deployment.yaml'
-      sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment publish-event-billing $name_img:$version'
+      sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment publish-event-billing ${fullname}'
     }
   }
 
