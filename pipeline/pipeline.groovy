@@ -27,7 +27,7 @@ node('docker-node') {
     println fullname
     withCredentials([file(credentialsId: 'kubeconfig', variable: 'SECRET_FILE')]) {
       sh 'KUBECONFIG=$SECRET_FILE kubectl apply -f ./kubernetes/deployment.yaml'
-      sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment publish-event-billing ${fullname}'
+      sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment publish-event-billing registry.devops.7f8254f4188647b4be19.eastus.aksapp.io/'+fullname
     }
   }
 
