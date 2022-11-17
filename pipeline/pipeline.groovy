@@ -25,7 +25,7 @@ node('docker-node') {
   stage('Deploy Image'){
     withCredentials([file(credentialsId: 'kubeconfig', variable: 'SECRET_FILE')]) {
       sh 'KUBECONFIG=$SECRET_FILE kubectl apply -f ./kubernetes/deployment.yaml'
-      sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment publish-event-billing ${name_img}:${version}'
+      sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment publish-event-billing $name_img:$version'
     }
   }
 
