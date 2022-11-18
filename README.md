@@ -1,4 +1,4 @@
-## Publishes Billing Data
+# Publishes Billing Data
 
 Start your server as an simple java application  
 
