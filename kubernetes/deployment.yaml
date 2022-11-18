@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publish-event-billing
+  labels:
+    app: publish-event-billing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publish-event-billing
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: publish-event-billing
+        version: v1
+    spec:
+      containers:
+      - name: publish-event-billing
+        image: registry.devops.7f8254f4188647b4be19.eastus.aksapp.io/publish-event-billing
+        ports:
+        - containerPort: 9000
+        env:
+          - name: KAFKA_URL
+            value: "kafka.kafka.svc.cluster.local:9092"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: publish-event-billing
+spec:
+  selector:
+    app: publish-event-billing
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: publish-event-billing
+spec:
+  gateways:
+    - default/default
+  hosts:
+  - publish-event-billing.istio.7f8254f4188647b4be19.eastus.aksapp.io
+  http:
+  - name: "http-routes"
+    match:
+    - uri:
+        prefix: "/"
+    route:
+    - destination:
+        host: publish-event-billing
+        subset: v1
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: publish-event-billing
+spec:
+  host: publish-event-billing
+  subsets:
+  - name: v1
+    labels:
+      version: v1
