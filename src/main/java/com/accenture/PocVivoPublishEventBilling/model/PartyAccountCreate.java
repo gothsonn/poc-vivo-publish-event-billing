@@ -1,5 +1,6 @@
 package com.accenture.PocVivoPublishEventBilling.model;
 
+import com.accenture.PocVivoPublishEventBilling.utils.ModelUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -561,41 +562,7 @@ public class PartyAccountCreate   {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PartyAccountCreate {\n");
-    
-    sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    lastModified: ").append(toIndentedString(lastModified)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    paymentStatus: ").append(toIndentedString(paymentStatus)).append("\n");
-    sb.append("    state: ").append(toIndentedString(state)).append("\n");
-    sb.append("    accountBalance: ").append(toIndentedString(accountBalance)).append("\n");
-    sb.append("    accountRelationship: ").append(toIndentedString(accountRelationship)).append("\n");
-    sb.append("    billStructure: ").append(toIndentedString(billStructure)).append("\n");
-    sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
-    sb.append("    creditLimit: ").append(toIndentedString(creditLimit)).append("\n");
-    sb.append("    defaultPaymentMethod: ").append(toIndentedString(defaultPaymentMethod)).append("\n");
-    sb.append("    financialAccount: ").append(toIndentedString(financialAccount)).append("\n");
-    sb.append("    paymentPlan: ").append(toIndentedString(paymentPlan)).append("\n");
-    sb.append("    relatedParty: ").append(toIndentedString(relatedParty)).append("\n");
-    sb.append("    taxExemption: ").append(toIndentedString(taxExemption)).append("\n");
-    sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
-    sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return ModelUtils.modelToString(this);
   }
 }
 
