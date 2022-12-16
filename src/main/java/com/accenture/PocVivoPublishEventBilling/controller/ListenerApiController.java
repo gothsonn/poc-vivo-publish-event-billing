@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.DataInput;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -36,44 +37,19 @@ public class ListenerApiController implements ListenerApi {
         this.topicProducer = topicProducer;
     }
 
-    public ResponseEntity<EventSubscription> listenToFinancialAccountCreateEvent(@ApiParam(value = "The event data" ,required=true )  @Valid @RequestBody FinancialAccountCreateEvent data) {
+    public ResponseEntity<EventSubscription> listenToFinancialAccountCreateEvent(@ApiParam(value = "The event data" ,required=true )  @Valid @RequestBody FinancialAccountCreateEvent data) throws IOException {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             topicProducer.send(data);
-            EventSubscription eventSubscription = objectMapper.convertValue(data, EventSubscription.class);
-            eventSubscription.setId(UUID.randomUUID().toString());
-            eventSubscription.setCallback("Event Created");
-            eventSubscription.setQuery("id='"+data.getEventId()+"'");
-            return new ResponseEntity<EventSubscription>(eventSubscription, HttpStatus.CREATED);
-        }
-        return new ResponseEntity<EventSubscription>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    public ResponseEntity<EventSubscription> listenToFinancialAccountDeleteEvent(@ApiParam(value = "The event data" ,required=true )  @Valid @RequestBody FinancialAccountDeleteEvent data) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<EventSubscription>(objectMapper.readValue("{\"empty\": false}", EventSubscription.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<EventSubscription>(HttpStatus.INTERNAL_SERVER_ERROR);
+            EventSubscription eventSubscription = new EventSubscription();
+            if(data.getEventId() !=null){
+                eventSubscription.setId(UUID.randomUUID().toString());
+                eventSubscription.setCallback("Event Created");
+                eventSubscription.setQuery("id='"+data.getEventId()+"'");
             }
+            return new ResponseEntity<EventSubscription>(eventSubscription, HttpStatus.ACCEPTED);
         }
-
         return new ResponseEntity<EventSubscription>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<EventSubscription> listenToFinancialAccountStateChangeEvent(@ApiParam(value = "The event data" ,required=true )  @Valid @RequestBody FinancialAccountStateChangeEvent data) {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
-            try {
-                return new ResponseEntity<EventSubscription>(objectMapper.readValue("{\"empty\": false}", EventSubscription.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<EventSubscription>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        }
-
-        return new ResponseEntity<EventSubscription>(HttpStatus.NOT_IMPLEMENTED);
-    }
 }
