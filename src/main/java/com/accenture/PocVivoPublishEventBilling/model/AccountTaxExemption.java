@@ -1,5 +1,6 @@
 package com.accenture.PocVivoPublishEventBilling.model;
 
+import com.accenture.PocVivoPublishEventBilling.utils.ModelUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -208,29 +209,7 @@ public class AccountTaxExemption   {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class AccountTaxExemption {\n");
-    
-    sb.append("    certificateNumber: ").append(toIndentedString(certificateNumber)).append("\n");
-    sb.append("    issuingJurisdiction: ").append(toIndentedString(issuingJurisdiction)).append("\n");
-    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
-    sb.append("    validFor: ").append(toIndentedString(validFor)).append("\n");
-    sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
-    sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return ModelUtils.modelToString(this);
   }
 }
 

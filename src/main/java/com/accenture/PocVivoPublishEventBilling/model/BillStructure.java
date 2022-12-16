@@ -1,5 +1,6 @@
 package com.accenture.PocVivoPublishEventBilling.model;
 
+import com.accenture.PocVivoPublishEventBilling.utils.ModelUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -194,28 +195,7 @@ public class BillStructure   {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class BillStructure {\n");
-    
-    sb.append("    cycleSpecification: ").append(toIndentedString(cycleSpecification)).append("\n");
-    sb.append("    format: ").append(toIndentedString(format)).append("\n");
-    sb.append("    presentationMedia: ").append(toIndentedString(presentationMedia)).append("\n");
-    sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
-    sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return ModelUtils.modelToString(this);
   }
 }
 

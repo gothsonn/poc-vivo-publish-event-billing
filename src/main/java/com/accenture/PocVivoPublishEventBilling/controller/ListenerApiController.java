@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.DataInput;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -51,5 +50,4 @@ public class ListenerApiController implements ListenerApi {
         }
         return new ResponseEntity<EventSubscription>(HttpStatus.NOT_IMPLEMENTED);
     }
-
 }

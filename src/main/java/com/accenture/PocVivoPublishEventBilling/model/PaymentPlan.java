@@ -1,5 +1,6 @@
 package com.accenture.PocVivoPublishEventBilling.model;
 
+import com.accenture.PocVivoPublishEventBilling.utils.ModelUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -303,33 +304,7 @@ public class PaymentPlan   {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class PaymentPlan {\n");
-    
-    sb.append("    numberOfPayments: ").append(toIndentedString(numberOfPayments)).append("\n");
-    sb.append("    paymentFrequency: ").append(toIndentedString(paymentFrequency)).append("\n");
-    sb.append("    planType: ").append(toIndentedString(planType)).append("\n");
-    sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    paymentMethod: ").append(toIndentedString(paymentMethod)).append("\n");
-    sb.append("    totalAmount: ").append(toIndentedString(totalAmount)).append("\n");
-    sb.append("    validFor: ").append(toIndentedString(validFor)).append("\n");
-    sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
-    sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return ModelUtils.modelToString(this);
   }
 }
 
