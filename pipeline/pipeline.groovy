@@ -13,9 +13,6 @@ node('docker-node') {
       sh "/usr/share/maven/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=publish-event-billing"
     }
   }
-  stage("Quality gate") {
-    waitForQualityGate abortPipeline: true
-  }
   stage('Build Image'){
       image = docker.build("$name_img")
     }
@@ -33,6 +30,7 @@ node('docker-node') {
   }
   stage('Deploy Image'){
     def fullname = "${name_img}:${version}"
+    
     withCredentials([file(credentialsId: 'kubeconfig', variable: 'SECRET_FILE')]) {
       sh 'KUBECONFIG=$SECRET_FILE kubectl apply -f ./kubernetes/deployment.yaml'
       sh 'KUBECONFIG=$SECRET_FILE kubectl set image deployment/'+name_img+' '+name_img+'='+pubregistry+fullname
