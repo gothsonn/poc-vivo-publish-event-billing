@@ -1,5 +1,6 @@
 package com.accenture.PocVivoPublishEventBilling.model;
 
+import com.accenture.PocVivoPublishEventBilling.utils.ModelUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -399,37 +400,7 @@ public class BillingCycleSpecification   {
 
   @Override
   public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class BillingCycleSpecification {\n");
-    
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    href: ").append(toIndentedString(href)).append("\n");
-    sb.append("    billingDateShift: ").append(toIndentedString(billingDateShift)).append("\n");
-    sb.append("    billingPeriod: ").append(toIndentedString(billingPeriod)).append("\n");
-    sb.append("    chargeDateOffset: ").append(toIndentedString(chargeDateOffset)).append("\n");
-    sb.append("    creditDateOffset: ").append(toIndentedString(creditDateOffset)).append("\n");
-    sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    frequency: ").append(toIndentedString(frequency)).append("\n");
-    sb.append("    mailingDateOffset: ").append(toIndentedString(mailingDateOffset)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    paymentDueDateOffset: ").append(toIndentedString(paymentDueDateOffset)).append("\n");
-    sb.append("    validFor: ").append(toIndentedString(validFor)).append("\n");
-    sb.append("    baseType: ").append(toIndentedString(baseType)).append("\n");
-    sb.append("    schemaLocation: ").append(toIndentedString(schemaLocation)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return ModelUtils.modelToString(this);
   }
 }
 
