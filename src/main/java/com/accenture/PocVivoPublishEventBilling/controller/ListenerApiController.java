@@ -36,9 +36,11 @@ public class ListenerApiController implements ListenerApi {
         this.topicProducer = topicProducer;
     }
 
-    public ResponseEntity<EventSubscription> listenToFinancialAccountCreateEvent(@ApiParam(value = "The event data" ,required=true )  @Valid @RequestBody FinancialAccountCreateEvent data) throws IOException {
-        String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
+    public ResponseEntity<EventSubscription> listenToFinancialAccountCreateEvent(
+            @ApiParam(value = "The event data" ,required=true )
+            @Valid @RequestBody FinancialAccountCreateEvent data
+    ) throws IOException {
+        if (request.getHeader("Accept") != null && (request.getContentType().contains("application/json"))) {
             topicProducer.send(data);
             EventSubscription eventSubscription = new EventSubscription();
             if(data.getEventId() !=null){

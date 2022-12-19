@@ -21,7 +21,8 @@ class ListenerApiControllerTest {
     @Test
     void listenToFinancialAccountCreateEventHeaderErrorTest() throws IOException {
         MockHttpServletRequest request = new MockHttpServletRequest();
-        request.addHeader("Accept", "text");
+        request.addHeader("Content-Type", "text");
+        request.addHeader("Accept", "*/*");
 
         //setup controller properties
         listenerApiController = new ListenerApiController(
@@ -37,7 +38,8 @@ class ListenerApiControllerTest {
     @Test
     void listenToFinancialAccountCreateEventEventTest() throws IOException {
         MockHttpServletRequest request = new MockHttpServletRequest();
-        request.addHeader("Accept", "application/json");
+        request.addHeader("Content-Type", "application/json");
+        request.addHeader("Accept", "*/*");
 
         TopicProducer topicProducerMock = Mockito.mock(TopicProducer.class);
 
